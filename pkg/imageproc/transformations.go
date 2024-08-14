@@ -1,4 +1,4 @@
-package myimage
+package utils
 
 import (
 	"image"
