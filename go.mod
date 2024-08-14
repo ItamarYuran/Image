@@ -1,3 +1,3 @@
-module github.com/ItamarYuran/Image
+module github.com/ItamarYuran/MyImage
 
 go 1.22.4

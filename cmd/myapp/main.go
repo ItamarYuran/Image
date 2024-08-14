@@ -2,55 +2,25 @@ package main
 
 import (
 	"fmt"
-	"image"
-	"image/jpeg"
-	"image/png"
-	"os"
+
+	utils "github.com/ItamarYuran/MyImage/pkg/imageproc"
 )
 
 func main() {
-	file, err := os.Open("./images/input.jpeg")
+	img, err := utils.GetFile("meandsarah.jpeg")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	defer file.Close()
+	img2 := utils.ResizeImage(img, 17)
+	utils.SaveFile("resized.jpeg", img2)
 
-	img, err := jpeg.Decode(file)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	imgray := utils.GrayColors(img2)
 
-	//fmt.Println(i)
-	bounds := img.Bounds()
+	arr, _ := utils.AsciImage(*imgray)
 
-	grayimg := image.NewGray(bounds)
-	newimg := image.NewRGBA(bounds)
-
-	outcolor, err := os.Create("./images/outcolor.png")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	defer outcolor.Close()
-
-	outgray, err := os.Create("./images/outgray.png")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	defer outgray.Close()
-
-	err = png.Encode(outgray, grayimg)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	err = png.Encode(outcolor, newimg)
-	if err != nil {
-		fmt.Println(err)
-		return
+	for _, a := range arr {
+		fmt.Println(a)
 	}
 
 }
