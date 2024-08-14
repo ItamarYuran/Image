@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	file, err := os.Open("input.jpeg")
+	file, err := os.Open("./images/input.jpeg")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -28,14 +28,14 @@ func main() {
 	grayimg := image.NewGray(bounds)
 	newimg := image.NewRGBA(bounds)
 
-	outcolor, err := os.Create("outcolor.png")
+	outcolor, err := os.Create("./images/outcolor.png")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	defer outcolor.Close()
 
-	outgray, err := os.Create("outgray.png")
+	outgray, err := os.Create("./images/outgray.png")
 	if err != nil {
 		fmt.Println(err)
 		return
